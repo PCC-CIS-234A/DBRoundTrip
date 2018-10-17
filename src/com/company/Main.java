@@ -18,6 +18,7 @@ public class Main {
         gui.displayUsers(users);
         UsersTableGUI table = new UsersTableGUI();
         m_Frame = new JFrame();
+        m_Frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         m_Frame.setContentPane(table.getRootPanel());
         m_Frame.pack();
         m_Frame.setLocationRelativeTo(null);
