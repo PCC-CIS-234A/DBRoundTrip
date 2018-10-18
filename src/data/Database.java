@@ -2,6 +2,12 @@ package data;
 
 import logic.User;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.sql.*;
 import java.util.ArrayList;
 
@@ -101,4 +107,68 @@ public class Database {
         // Return the list of results. Will return an empty list if there was an error.
         return roles;
     }
+
+
+    public User lookupUser(String email) {
+        connect();
+        String query = "SELECT UserID, Email, Password, Role, Image FROM USERS WHERE Email = ?";
+        try {
+            PreparedStatement stmt = m_Connection.prepareStatement(query);
+            stmt.setString(1, email);
+            ResultSet rs = stmt.executeQuery();
+            if(rs.next()) {
+                InputStream stream = rs.getBinaryStream("Image");
+                BufferedImage image = null;
+
+                try {
+                    if (stream != null)
+                        image = ImageIO.read(stream);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                return new User(rs.getInt("UserID"), rs.getString("Email"), rs.getString("Password"), rs.getString("Role"), image);
+            }
+            return null;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
+    public User registerUser(String email, String password, BufferedImage image) {
+        connect();
+        String query = "INSERT INTO USERS VALUES (?, ?, '" + User.USER_ROLE + "', ?); SELECT SCOPE_IDENTITY() AS ID;";
+        try {
+            PreparedStatement stmt = m_Connection.prepareStatement(query);
+            stmt.setString(1, email);
+            stmt.setString(2, password);
+
+            ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+            InputStream inputStream = null;
+            int length = 0;
+
+            try {
+                if (image != null) {
+                    ImageIO.write(image, "png", outputStream);
+                    inputStream = new ByteArrayInputStream(outputStream.toByteArray());
+                    length = inputStream.available();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            stmt.setBinaryStream(3, inputStream, length);
+            ResultSet rs = stmt.executeQuery();
+
+            if(rs.next()) {
+                return new User(rs.getInt("ID"), email, password, User.USER_ROLE, image);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+
+    }
+
 }
