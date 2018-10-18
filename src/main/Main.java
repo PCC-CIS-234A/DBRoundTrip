@@ -10,6 +10,11 @@ import java.util.ArrayList;
  */
 public class Main {
     public static void main(String[] args) {
-        Controller.start();
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                Controller.start();
+            }
+        });
     }
 }
