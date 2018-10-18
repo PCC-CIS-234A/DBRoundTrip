@@ -22,25 +22,6 @@ public class User {
     public static final String USER_ROLE = "User";
 
     /**
-     * static method for fetching the list of users with a given role.
-     *
-     * @param role  The role for users that we wish to fetch
-     * @return      The list of users matching the role
-     */
-    public static ArrayList<User> fetchUsers(String role) {
-        return Database.fetchUsers(role);
-    }
-
-    /**
-     * Static method that returns the list of roles in use in the USERS table of the database.
-     *
-     * @return  The list of roles.
-     */
-    public static ArrayList<String> fetchRoles() {
-        return Database.fetchRoles();
-    }
-
-    /**
      * Construct a new User object with all values specified.
      *
      * @param userID
@@ -68,6 +49,26 @@ public class User {
         m_Email = email;
         m_Role = role;
         m_Password = password;
+    }
+
+
+    /**
+     * static method for fetching the list of users with a given role.
+     *
+     * @param role  The role for users that we wish to fetch
+     * @return      The list of users matching the role
+     */
+    public static ArrayList<User> fetchUsers(String role) {
+        return Database.fetchUsers(role);
+    }
+
+    /**
+     * Static method that returns the list of roles in use in the USERS table of the database.
+     *
+     * @return  The list of roles.
+     */
+    public static ArrayList<String> fetchRoles() {
+        return Database.fetchRoles();
     }
 
     public static void login(String em, String pwd) {
