@@ -1,7 +1,7 @@
 package main;
 
-import presentation.Console;
-import presentation.UsersTableGUI;
+import presentation.ConsoleUI.Console;
+import presentation.UsersTableGUI.UsersTableGUI;
 
 import javax.swing.*;
 
@@ -12,7 +12,7 @@ import javax.swing.*;
  * There's only one application, so we only need one controller. That's why everything here is static.
  * <p>
  * Manages an instance of a JFrame for the currently running GUI as well as an instance of the Console
- * class for writing to the console.
+ * class for writing to the ConsoleUI.
  */
 public class Controller {
     static JFrame m_Frame;
@@ -20,7 +20,7 @@ public class Controller {
 
     /**
      * Constructor for Controller objects. Creates an instance of the Console class for writing users to
-     * the console, and starts up and shows the users table GUI.
+     * the ConsoleUI, and starts up and shows the users table GUI.
      */
     public static void start() {
         m_Console = new Console();
@@ -50,7 +50,7 @@ public class Controller {
     }
 
     /**
-     * Tell the console to display the list of users with a given role.
+     * Tell the ConsoleUI to display the list of users with a given role.
      *
      * @param role  The role of users that we wish to display.
      */

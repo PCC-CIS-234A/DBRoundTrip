@@ -1,4 +1,4 @@
-package presentation;
+package presentation.UsersTableGUI;
 
 import logic.User;
 import main.Controller;
@@ -14,7 +14,7 @@ import java.util.ArrayList;
 /**
  * A form that presents a user interface for browsing users by role. Roles are presented in a combobox
  * and user info is presented in a table. Also includes a button for dumping the current table contents
- * to the console in CSV format.
+ * to the ConsoleUI in CSV format.
  */
 public class UsersTableGUI {
     private JTable userTable;
@@ -25,7 +25,7 @@ public class UsersTableGUI {
 
     /**
      * Constructor for the UsersTableGUI interface. Sets up the role combo and te users table
-     * and adds event listeners for the combo box and the "dump to console" button.
+     * and adds event listeners for the combo box and the "dump to ConsoleUI" button.
      */
     public UsersTableGUI() {
         setupRoleCombo();
@@ -47,8 +47,8 @@ public class UsersTableGUI {
         });
         dumpToConsoleButton.addActionListener(new ActionListener() {
 
-            // This gets called when the user clicks on the dump to console button.
-            // It tells the controller to show users in the console.
+            // This gets called when the user clicks on the dump to ConsoleUI button.
+            // It tells the controller to show users in the ConsoleUI.
             @Override
             public void actionPerformed(ActionEvent e) {
                 Controller.showUsersInConsole(roleCombo.getSelectedItem().toString());
