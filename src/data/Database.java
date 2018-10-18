@@ -109,7 +109,7 @@ public class Database {
     }
 
 
-    public User lookupUser(String email) {
+    public static User lookupUser(String email) {
         connect();
         String query = "SELECT UserID, Email, Password, Role, Image FROM USERS WHERE Email = ?";
         try {
@@ -137,7 +137,7 @@ public class Database {
         return null;
     }
 
-    public User registerUser(String email, String password, BufferedImage image) {
+    public static User registerUser(String email, String password, BufferedImage image) {
         connect();
         String query = "INSERT INTO USERS VALUES (?, ?, '" + User.USER_ROLE + "', ?); SELECT SCOPE_IDENTITY() AS ID;";
         try {

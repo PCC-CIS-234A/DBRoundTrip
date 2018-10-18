@@ -73,8 +73,7 @@ public class User {
     public static void login(String em, String pwd) {
 
         // some logic to verify that the user is the legitimate user.
-        Database db = new Database();
-        User user = db.lookupUser(em);
+        User user = Database.lookupUser(em);
 
         if(user == null) {
             System.out.println("User not found, need an error dialog.");
@@ -96,15 +95,14 @@ public class User {
             return null;
         }
         /// validate password and email
-        Database db = new Database();
-        User user = db.lookupUser(email);
+        User user = Database.lookupUser(email);
 
         if(user != null) {
             System.out.println("User already exists! Alert goes here.");
             return null;
         }
 
-        user = db.registerUser(email, password, image);
+        user = Database.registerUser(email, password, image);
         return user;
     }
 
