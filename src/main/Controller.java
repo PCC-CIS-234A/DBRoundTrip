@@ -2,6 +2,7 @@ package main;
 
 import logic.User;
 import presentation.ConsoleUI.Console;
+import presentation.GUIForm;
 import presentation.UsersTableGUI.UsersTableGUI;
 import presentation.Login.LoginForm;
 import presentation.Register.RegisterForm;
@@ -39,22 +40,12 @@ public class Controller {
         m_Frame = new JFrame();
         // Makes the application close when the window goes away.
         m_Frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        showForm(LoginForm.class);
+        showForm(new LoginForm(m_User));
     }
 
-    public static void showForm(Class<?> form) throws InvalidParameterException {
-        JPanel root = null;
-        
-        if (form == LoginForm.class)
-            root = new LoginForm(m_User).getRootPanel();
-        else if (form == RegisterForm.class)
-            root = new RegisterForm(m_User).getRootPanel();
-        else if (form == StubForm.class)
-            root = new StubForm(m_User).getRootPanel();
-        else if (form == UsersTableGUI.class)
-            root = new UsersTableGUI().getRootPanel();
-        else
-            throw(new InvalidParameterException("Unknown form type in controller " + form.toString()));
+    public static void showForm(GUIForm form) {
+        JPanel root = form.getRootPanel();
+
         m_Frame.getContentPane().removeAll();
         m_Frame.getContentPane().add(root);
         m_Frame.pack();
@@ -63,11 +54,11 @@ public class Controller {
     }
 
     public static void showLogin() {
-        showForm(LoginForm.class);
+        showForm(new LoginForm(m_User));
     }
 
     public static void showRegister() {
-        showForm(RegisterForm.class);
+        showForm(new RegisterForm(m_User));
     }
 
     /**
@@ -85,8 +76,8 @@ public class Controller {
 
     public static void login() {
         if (m_User.getRole().equals(User.ADMIN_ROLE))
-            showForm(UsersTableGUI.class);
+            showForm(new UsersTableGUI());
         else
-            showForm(StubForm.class);
+            showForm(new StubForm(m_User));
     }
 }

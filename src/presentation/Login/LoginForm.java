@@ -2,13 +2,14 @@ package presentation.Login;
 
 import logic.User;
 import main.Controller;
+import presentation.GUIForm;
 
 import javax.swing.*;
 
 /**
  * Created by SYTC307u8365 on 10/5/2017.
  */
-public class LoginForm {
+public class LoginForm extends GUIForm {
     JPanel rootPanel;
     JTextField emailTextField;
     JButton newAccountButton;

@@ -2,6 +2,7 @@ package presentation.UsersTableGUI;
 
 import logic.User;
 import main.Controller;
+import presentation.GUIForm;
 
 import javax.swing.*;
 import javax.swing.table.*;
@@ -16,7 +17,7 @@ import java.util.ArrayList;
  * and user info is presented in a table. Also includes a button for dumping the current table contents
  * to the ConsoleUI in CSV format.
  */
-public class UsersTableGUI {
+public class UsersTableGUI extends GUIForm {
     private JTable userTable;
     private JComboBox roleCombo;
     private JPanel rootPanel;

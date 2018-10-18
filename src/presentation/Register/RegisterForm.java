@@ -3,6 +3,7 @@ package presentation.Register;
 import logic.User;
 import main.Controller;
 import main.Main;
+import presentation.GUIForm;
 import presentation.components.DroppablePicturePanel;
 
 import javax.swing.*;
@@ -12,7 +13,7 @@ import java.awt.event.ActionListener;
 /**
  * Created by SYTC307u8365 on 10/5/2017.
  */
-public class RegisterForm {
+public class RegisterForm extends GUIForm {
     JPanel rootPanel;
     JTextField emailTextField;
     JButton loginExistingButton;

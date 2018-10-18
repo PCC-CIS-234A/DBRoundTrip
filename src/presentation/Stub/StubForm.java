@@ -3,6 +3,7 @@ package presentation.Stub;
 import logic.User;
 import main.Controller;
 import main.Main;
+import presentation.GUIForm;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -11,7 +12,7 @@ import java.awt.event.ActionListener;
 /**
  * Created by SYTC307u8365 on 10/10/2017.
  */
-public class StubForm {
+public class StubForm extends GUIForm {
     private JButton startOverButton;
     private JPanel rootPanel;
     private presentation.components.PicturePanel picturePanel;
